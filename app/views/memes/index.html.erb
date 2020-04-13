@@ -1,0 +1,43 @@
+<h1>All memes</h1>
+
+<% @memes.each do |meme| %>
+  <%= meme.name %>
+<% end %>
+
+<% if @memes.empty? %>
+  <div class="no-result">
+      <h1>No memes yet</h1>
+      <h2>Try another key word</h2>
+  </div>
+<% else %>
+  <div class="memes-index-container" data-active="<%= params[:filter].select {|k, v| v == '1'}.keys.first if params[:filter] %>">
+    <div id="index-main-container">
+      <div class="memes-index-cards">
+        <% @memes.each do |meme| %>
+          <div class="memes-index-card">
+            <%= link_to(meme, data: { turbolinks: false }) do  %>
+            <div class="img-memes-index-card">
+
+            </div>
+            <div class="memes-index-card-infos">
+              <div>
+                <h1><%= meme.name[0..30] %></h1>
+              </div>
+              <div class="d-flex justify-content-between mb-1">
+                <h2><i class="fas fa-map-marker-alt"></i> <%= meme.name %></h2>
+              </div>
+              <div class="d-flex justify-content-between">
+                <div class=" rating d-flex">
+                  <h3>
+                    <i class="fas fa-star" style="color:$blue"></i> <%= meme.rating %>/5
+                  </h3>
+                 </div>
+               </div>
+             </div>
+           <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>
