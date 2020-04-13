@@ -1,0 +1,10 @@
+<h2>stop that man</h2>
+
+<% @members.each do |member| %>
+  <%= member %>
+<% end %>
+
+  <form action="/contact">
+    <input type="text" name="member" placeholder="search a member">
+    <input type="submit">
+  </form>
